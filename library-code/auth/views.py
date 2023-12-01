@@ -9,5 +9,5 @@ class LoginPageView(View):
         return render(request, 'auth/login.html')
 
 
-    def post(self, request, *args, **kwargs):
-        
+    # def post(self, request, *args, **kwargs):
+    #
