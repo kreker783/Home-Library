@@ -1,10 +1,36 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model
 from django.contrib.auth import authenticate, login
-from django.contrib import messages
 from django.views import View
 
+from .validation import if_data_valid
 
-# Create your views here.
+
+class RegisterPageView(View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request, 'auth/register.html')
+
+    def post(self, request, *args, **kwargs):
+        data = {
+            'email': request.POST.get('email'),
+            'password': request.POST.get('password'),
+            'password-confirm': request.POST.get('password-conf')
+        }
+
+        if not if_data_valid(data)[0]:
+            return render(request, "auth/register.html", if_data_valid(data)[1])
+
+        User = get_user_model()
+        user = User.objects.create_user(email=data.get('email'), password=data.get('password'))
+
+        if user is not None:
+            login(request, user)
+            return redirect("home")
+
+        return redirect("register")
+
+
 class LoginPageView(View):
 
     def get(self, request, *args, **kwargs):
@@ -20,10 +46,6 @@ class LoginPageView(View):
 
         if user is not None:
             login(request, user)
-            messages.success(request, "Logged in successfully.")
             return redirect("home")
-        else:
-            messages.error(request, 'Invalid login credentials.')
 
         return redirect("login")
-

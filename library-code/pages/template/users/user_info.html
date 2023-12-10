@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Your user</title>
-</head>
-<body>
-  <h1>You are logged as {{ user }}</h1>
-</body>
-</html>
+{% extends "../pages/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/users/user-info_styles.css' %}">
+{% endblock extra_head %}
+
+
+{% block content %}
+
+    <div class='info'>
+        <div class="photo">
+
+        </div>
+        <div class="personal-info">
+            <h1>{{ name }}</h1>
+            <hr>
+
+            <p>Email: {{ email }}</p>
+            <p>Your ID: {{ user_id }}</p>
+            <p>Date of joining the service: {{ date_joined }}</p>
+        </div>
+    </div>
+
+{% endblock %}

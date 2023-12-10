@@ -133,6 +133,9 @@ STATIC_URL = 'pages/static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATICFILES_DIRS = [
+    'pages'
+]
 
 AUTH_USER_MODEL = 'users.CustomUser'
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None

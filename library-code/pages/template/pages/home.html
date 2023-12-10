@@ -1,35 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/home_styles.css">
-    <title>Library Website</title>
-</head>
-<body>
+{% extends "./base.html" %}
 
-<header>
-    <h1>Library</h1>
-    <div id="menu">
-        <nav>
-            <a href="#">Home</a>
-            <a href="#">Catalog</a>
-            <a href="#">Events</a>
-            <a href="#">About Us</a>
-            <!-- Add more navigation links as needed -->
-        </nav>
-    </div>
-
-</header>
-
-<div class="menu-icon" onclick="toggleMenu()">☰</div>
-<div class="user-icon">👤</div>
-
-<main>
-    <h2>Welcome to our Library!</h2>
-    <p>Explore our vast collection of books and enjoy a quiet reading environment.</p>
-    <button onclick="login()">Log In</button>
-</main>
-
-</body>
-</html>
+{% block content %}
+    <main>
+        <h2>Welcome to our Library!</h2>
+        <p>Explore our vast collection of books and enjoy a quiet reading environment.</p>
+    </main>
+{% endblock content %}
