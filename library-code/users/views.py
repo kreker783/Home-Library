@@ -15,9 +15,9 @@ class UserView(View):
 
     def get(self, request, *args, **kwargs):
 
-        # if request.user.pk != kwargs['user_id']:
-        #     return
-        #
+        if request.user.pk != kwargs['user_id']:
+            return render(request, 'errors/wrong_user_error.html')
+
         data = {
             "email": request.user.email,
             "name": "Some user",
