@@ -31,3 +31,27 @@
 .personal-info p {
     margin: 5px 0;
 }
+
+.menu-container {
+    position: fixed;
+    padding: 50px;
+    right: 0;
+    text-align: center;
+}
+
+.menu-item {
+    display: block;
+    padding: 7px;
+    color: #3a3333;
+    font-size: large;
+    margin-right: 15px;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.menu-item:hover {
+    color: #212121;
+    background-color: #4f4f4f;
+    border-radius: 30px;
+}
