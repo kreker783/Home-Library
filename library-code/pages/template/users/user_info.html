@@ -23,7 +23,10 @@
 
         <div class="menu-container">
             <a href="#" class="menu-item">Change Personal Info</a>
-            <a href="#" class="menu-item">Log Out</a>
+            <form method="post" action="{% url 'log_out' %}">
+                {% csrf_token %}
+                <button class="menu-item">Log Out</button>
+            </form>
         </div>
     </div>
 

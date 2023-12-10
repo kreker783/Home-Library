@@ -12,6 +12,7 @@
         <h2>Login</h2>
         <form class="login-form" action="{% url 'login' %}" method="post">
             {% csrf_token %}
+            {{ message }}
             <label for="email">Email:</label>
             <input type="text" id="email" name="email" required>
 

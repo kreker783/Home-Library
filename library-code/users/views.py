@@ -5,10 +5,11 @@ from django.views import View
 # Check if user is logged in and redirect
 def identify(request, *args, **kwargs):
     user = request.user
-    if user:
+
+    if not user.is_anonymous:
         return redirect(f"/users/{user.pk}/")
-    else:
-        return redirect("login")
+
+    return redirect("login")
 
 
 class UserView(View):

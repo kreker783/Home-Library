@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import get_user_model
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.views import View
 
 from .validation import if_data_valid
@@ -34,7 +33,7 @@ class RegisterPageView(View):
 class LoginPageView(View):
 
     def get(self, request, *args, **kwargs):
-        return render(request, 'auth/login.html')
+        return render(request, 'auth/login.html', context=dict(args))
 
     def post(self, request, *args, **kwargs):
         data = {
@@ -48,4 +47,10 @@ class LoginPageView(View):
             login(request, user)
             return redirect("home")
 
-        return redirect("login")
+        return render(request, 'auth/login.html', context={'message': 'Wrong credentials!'})
+
+
+class LogoutView(View):
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return redirect("home")
