@@ -21,7 +21,7 @@ class UserView(View):
 
         data = {
             "email": request.user.email,
-            "name": "Some user",
+            "name": request.user.name,
             "user_id": kwargs['user_id'],
             "date_joined": request.user.date_joined
         }
