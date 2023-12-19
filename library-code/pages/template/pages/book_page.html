@@ -1,0 +1,10 @@
+{% extends "./base.html" %}
+
+{% block content %}
+    <main>
+        <p>Requested data:</p>
+        {% for key, value in data.items %}
+            <li><strong>{{ key }}:</strong> {{ value }}</li>
+        {% endfor %}
+    </main>
+{% endblock content %}
