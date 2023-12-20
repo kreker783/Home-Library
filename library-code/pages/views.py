@@ -34,8 +34,6 @@ class CatalogPageView(View):
         if search_query:
             api_response = get_api(search_query)
 
-            api_response = json.loads(api_response)
-
             for value in api_response.get('items', []):
                 volume_info = value.get("volumeInfo", {})
 
@@ -43,9 +41,11 @@ class CatalogPageView(View):
                     [
                         volume_info.get('title', "Unknown Title"),
                         volume_info.get('subtitle', ""),
-                        ''.join(volume_info.get('authors', ''))
+                        ''.join(volume_info.get('authors', 'Unknown Author'))
                     ]
                 )
+
+        print(result)
 
         return render(request, template_name="pages/catalog.html", context={'result': result})
 

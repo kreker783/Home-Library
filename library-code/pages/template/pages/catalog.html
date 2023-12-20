@@ -14,7 +14,7 @@
             <h2>Search Results</h2>
             <ul>
                 {% for book in result %}
-                    <li>{{ book[0] }} {{ book[1] }}  by {{ book[2] }}</li>
+                    <li>{{ book.0 }} {{ book.1 }} by {{ book.2 }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
