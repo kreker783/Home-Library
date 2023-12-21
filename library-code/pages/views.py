@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView, View
 import json
 import requests
+import support_func
 
 
 class HomePageView(TemplateView):
@@ -59,7 +60,8 @@ class CatalogPageView(View):
             "start_index": start_index,
             "max_results": max_results,
             "next_start_index": start_index + max_results,
-            "previous_start_index": start_index - max_results
+            "previous_start_index": start_index - max_results,
+            "modified_url": support_func.remove_parameters(request.get_full_path(), "start_index", "max_results")
         }
 
         return render(request, template_name="pages/catalog.html", context=context)
@@ -70,3 +72,4 @@ def get_api(params=None):
     data = requests.get(api, params=params)
     data = data.json()
     return data
+

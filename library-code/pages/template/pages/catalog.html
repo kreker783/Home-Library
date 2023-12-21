@@ -18,8 +18,8 @@
                 {% endfor %}
             </ul>
 
-            <a href="?q={{ request.GET.q|urlencode }}&start_index={{ prev_start_index }}&max_results={{ max_results }}">Previous Page</a>
-            <a href="?q={{ request.GET.q|urlencode }}&start_index={{ next_start_index }}&max_results={{ max_results }}">Next Page</a>
+            <a href="{{ modified_url }}&start_index={{ prev_start_index }}&max_results={{ max_results }}">Previous Page</a>
+            <a href="{{ modified_url }}&start_index={{ next_start_index }}&max_results={{ max_results }}">Next Page</a>
         {% endif %}
     </main>
 {% endblock content %}
