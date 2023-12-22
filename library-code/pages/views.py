@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView, View
 import json
 import requests
-import support_func
+import pages.support_func as sf
 
 
 class HomePageView(TemplateView):
@@ -60,9 +60,12 @@ class CatalogPageView(View):
             "start_index": start_index,
             "max_results": max_results,
             "next_start_index": start_index + max_results,
-            "previous_start_index": start_index - max_results,
-            "modified_url": support_func.remove_parameters(request.get_full_path(), "start_index", "max_results")
+            "prev_start_index": start_index - max_results,
+            "modified_url": sf.remove_parameters(request.get_full_path(), "start_index", "max_results")
         }
+
+        if context.get("prev_start_index") < 0:
+            context["prev_start_index"] = 0
 
         return render(request, template_name="pages/catalog.html", context=context)
 
