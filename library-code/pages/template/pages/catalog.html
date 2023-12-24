@@ -1,4 +1,10 @@
 {% extends "./base.html" %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/pages/catalog_styles.css' %}">
+{% endblock extra_head %}
+
 
 {% block content %}
     <main>
@@ -11,15 +17,20 @@
 
 
         {% if result %}
-            <h2>Search Results</h2>
-            <ul>
+            <div class="book-container">
                 {% for book in result %}
-                    <li>{{ book.0 }} {{ book.1 }} by {{ book.2 }}</li>
+                <a href="{{ book.3 }}" class="book">
+<!--                    <div class="book">-->
+                    <img src="{% static 'images/mistborn.jpg' %}" alt="{{ book.0 }}">
+                    <h3>{{ book.0 }} {{ book.1 }}</h3>
+                    <p>{{ book.2 }}</p>
+<!--                    </div>-->
+                </a>
                 {% endfor %}
-            </ul>
 
-            <a href="{{ modified_url }}&start_index={{ prev_start_index }}&max_results={{ max_results }}">Previous Page</a>
-            <a href="{{ modified_url }}&start_index={{ next_start_index }}&max_results={{ max_results }}">Next Page</a>
+                <a href="{{ modified_url }}&start_index={{ prev_start_index }}&max_results={{ max_results }}" class="round-nav">&#8249;</a>
+                <a href="{{ modified_url }}&start_index={{ next_start_index }}&max_results={{ max_results }}" class="round-nav">&#8250;</a>
+            </div>
         {% endif %}
     </main>
 {% endblock content %}

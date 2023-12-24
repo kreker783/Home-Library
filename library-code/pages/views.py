@@ -33,7 +33,7 @@ class CatalogPageView(View):
         search_query = search_query.replace(' ', '+')
 
         start_index = int(request.GET.get('start_index', 0))
-        max_results = int(request.GET.get('max_results', 10))
+        max_results = int(request.GET.get('max_results', 9))
 
         params = {
             "q": search_query,
@@ -51,9 +51,11 @@ class CatalogPageView(View):
                     [
                         volume_info.get('title', "Unknown Title"),
                         volume_info.get('subtitle', ""),
-                        ''.join(volume_info.get('authors', 'Unknown Author'))
+                        ''.join(volume_info.get('authors', 'Unknown Author')),
+                        value.get('id', "")
                     ]
                 )
+                # print(volume_info.get('industryIdentifiers')[0]['identifier'])
 
         context = {
             'result': result,
