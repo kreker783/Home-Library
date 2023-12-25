@@ -52,10 +52,10 @@ class CatalogPageView(View):
                         volume_info.get('title', "Unknown Title"),
                         volume_info.get('subtitle', ""),
                         ''.join(volume_info.get('authors', 'Unknown Author')),
-                        value.get('id', "")
+                        value.get('id', ""),
+                        volume_info.get('imageLinks', {}).get('thumbnail', '')
                     ]
                 )
-                # print(volume_info.get('industryIdentifiers')[0]['identifier'])
 
         context = {
             'result': result,

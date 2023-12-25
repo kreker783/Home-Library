@@ -19,12 +19,10 @@
         {% if result %}
             <div class="book-container">
                 {% for book in result %}
-                <a href="{{ book.3 }}" class="book">
-<!--                    <div class="book">-->
-                    <img src="{% static 'images/mistborn.jpg' %}" alt="{{ book.0 }}">
+                <a href="book/{{ book.3 }}" class="book">
+                    <img src="{{ book.4 }}" alt="{{ book.4 }}">
                     <h3>{{ book.0 }} {{ book.1 }}</h3>
                     <p>{{ book.2 }}</p>
-<!--                    </div>-->
                 </a>
                 {% endfor %}
 
