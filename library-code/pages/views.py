@@ -42,7 +42,7 @@ class CatalogPageView(View):
         }
 
         if search_query:
-            api_response = get_api(params)
+            api_response = sf.get_api(params)
 
             for value in api_response.get('items', []):
                 volume_info = value.get("volumeInfo", {})
@@ -72,9 +72,5 @@ class CatalogPageView(View):
         return render(request, template_name="pages/catalog.html", context=context)
 
 
-def get_api(params=None):
-    api = f"https://www.googleapis.com/books/v1/volumes"
-    data = requests.get(api, params=params)
-    data = data.json()
-    return data
+
 

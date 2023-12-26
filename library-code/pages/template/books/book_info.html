@@ -1,0 +1,33 @@
+{% extends "../pages/base.html" %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/users/user-info_styles.css' %}">
+{% endblock extra_head %}
+
+
+{% block content %}
+
+    <div class='info'>
+        <div class="cover">
+            {{  }}
+        </div>
+        <div class="book-info">
+            <h1>{{ name }}</h1>
+            <hr>
+
+            <p>Email: {{ email }}</p>
+            <p>Your ID: {{ user_id }}</p>
+            <p>Date of joining the service: {{ date_joined }}</p>
+        </div>
+
+        <div class="menu-container">
+            <a href="#" class="menu-item">Change Personal Info</a>
+            <form method="post" action="{% url 'log_out' %}">
+                {% csrf_token %}
+                <button class="menu-item">Log Out</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
