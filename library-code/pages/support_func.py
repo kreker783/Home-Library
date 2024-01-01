@@ -1,5 +1,5 @@
 from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
-from django.contrib.sites import requests
+import requests
 
 
 def remove_parameters(url, *parameters):
@@ -24,8 +24,8 @@ def remove_parameters(url, *parameters):
     return modified_url
 
 
-def get_api(params=None):
-    api = f"https://www.googleapis.com/books/v1/volumes"
+def get_api(params=None, book_id=""):
+    api = f"https://www.googleapis.com/books/v1/volumes/" + book_id
     data = requests.get(api, params=params)
     data = data.json()
     return data

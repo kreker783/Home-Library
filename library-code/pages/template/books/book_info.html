@@ -10,23 +10,25 @@
 
     <div class='info'>
         <div class="cover">
-            {{  }}
+            {% if cover %}
+                <img src="{{ cover }}" alt="{{ title }}">
+            {% else %}
+                <img src="{% static 'images/no-cover.jpg' %}" alt="Nothing" width="128" height="193">
+            {% endif %}
         </div>
         <div class="book-info">
-            <h1>{{ name }}</h1>
+            <h1>{{ title }}</h1>
+            {% if subtitle %}
+                <h1>{{ subtitle }}</h1>
+            {% endif %}
             <hr>
 
-            <p>Email: {{ email }}</p>
-            <p>Your ID: {{ user_id }}</p>
-            <p>Date of joining the service: {{ date_joined }}</p>
-        </div>
-
-        <div class="menu-container">
-            <a href="#" class="menu-item">Change Personal Info</a>
-            <form method="post" action="{% url 'log_out' %}">
-                {% csrf_token %}
-                <button class="menu-item">Log Out</button>
-            </form>
+            <p>Author: {{ authors }}</p>
+            <p>Publisher: {{ publisher }}</p>
+            <p>Rating on Google Books: {{ rating }}</p>
+            <p>Year of publication: {{ year }}</p>
+            <p>Amount of pages: {{ pages }}</p>
+            <p>Genre: {{ categories }}</p>
         </div>
     </div>
 
