@@ -20,14 +20,18 @@
             <div class="book-container">
                 {% for book in result %}
                 <a href="book/{{ book.3 }}" class="book">
-                    <img src="{{ book.4 }}" alt="{{ book.4 }}">
+                    {% if book.4 %}
+                        <img src="{{ book.4 }}" alt="{{ book.0 }}">
+                    {% else %}
+                        <img src="{% static 'images/no-cover.jpg' %}" alt="Nothing" height="500" width="300">
+                    {% endif %}
                     <h3>{{ book.0 }} {{ book.1 }}</h3>
                     <p>{{ book.2 }}</p>
                 </a>
                 {% endfor %}
 
-                <a href="{{ modified_url }}&start_index={{ prev_start_index }}&max_results={{ max_results }}" class="round-nav">&#8249;</a>
-                <a href="{{ modified_url }}&start_index={{ next_start_index }}&max_results={{ max_results }}" class="round-nav">&#8250;</a>
+                <a href="{{ modified_url }}&start_index={{ prev_start_index }}&max_results={{ max_results }}" class="previous page">&laquo; Previous</a>
+                <a href="{{ modified_url }}&start_index={{ next_start_index }}&max_results={{ max_results }}" class="next page">Next &raquo;</a>
             </div>
         {% endif %}
     </main>

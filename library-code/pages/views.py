@@ -53,7 +53,7 @@ class CatalogPageView(View):
                         volume_info.get('subtitle', ""),
                         ''.join(volume_info.get('authors', 'Unknown Author')),
                         value.get('id', ""),
-                        volume_info.get('imageLinks', {}).get('thumbnail', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png')
+                        volume_info.get('imageLinks', {}).get('thumbnail', None)
                     ]
                 )
 
