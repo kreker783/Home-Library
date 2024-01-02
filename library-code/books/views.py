@@ -12,17 +12,18 @@ class BookInfoView(View):
         api_response = sf.get_api(book_id=book_id)
 
         volume_info = api_response.get('volumeInfo', {})
+        authors = volume_info.get('authors')
 
         result = {
             'title': volume_info.get('title'),
             'subtitle': volume_info.get('subtitle', ""),
-            'authors': ', '.join(volume_info.get('authors', "Unknown Author")),
+            'authors': ', '.join(authors) if authors else 'Unknown Author',
             'publisher': volume_info.get('publisher', 'Unknown publisher'),
             'year': volume_info.get('publishedDate'),
             'description': volume_info.get('description', 'Unknown'),
             'pages': volume_info.get('pageCount'),
             'categories': ', '.join(volume_info.get('categories', "")),
-            'rating': volume_info.get('averageRating'),
+            'rating': volume_info.get('averageRating', 0.0),
             'cover': volume_info.get('imageLinks', {}).get('thumbnail', None),
             'language': volume_info.get('language', 'Unknown'),
             'price': api_response.get('retailPrice', {}).get('amount', 'Unknown')

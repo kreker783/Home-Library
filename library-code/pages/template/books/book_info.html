@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_head %}
-    <link rel="stylesheet" href="{% static 'css/users/user-info_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/book/book_info_styles.css' %}">
 {% endblock extra_head %}
 
 
@@ -23,12 +23,12 @@
             {% endif %}
             <hr>
 
-            <p>Author: {{ authors }}</p>
-            <p>Publisher: {{ publisher }}</p>
-            <p>Rating on Google Books: {{ rating }}</p>
-            <p>Year of publication: {{ year }}</p>
-            <p>Amount of pages: {{ pages }}</p>
-            <p>Genre: {{ categories }}</p>
+            <p><b>Author:</b> {{ authors }}</p>
+            <p><b>Publisher:</b> {{ publisher }}</p>
+            <p><b>Rating on Google Books:</b> {{ rating }}/5</p>
+            <p><b>Year of publication:</b> {{ year }}</p>
+            <p><b>Amount of pages:</b> {{ pages }}</p>
+            <p><b>Categories:</b> {{ categories }}</p>
         </div>
     </div>
 

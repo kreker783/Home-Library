@@ -1,0 +1,28 @@
+.info {
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.cover {
+    float: left;
+    margin-right: 40px;
+    height: 100vh;
+}
+
+.cover img {
+    display: block;
+    padding-top: 7px;
+}
+
+.book-info {
+    overflow: hidden;
+}
+
+h1 {
+    margin: 0;
+    padding-top: 0;
+}
