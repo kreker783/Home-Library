@@ -47,11 +47,13 @@ class CatalogPageView(View):
             for value in api_response.get('items', []):
                 volume_info = value.get("volumeInfo", {})
 
+                authors = volume_info.get('authors')
+
                 result.append(
                     [
                         volume_info.get('title', "Unknown Title"),
                         volume_info.get('subtitle', ""),
-                        ''.join(volume_info.get('authors', 'Unknown Author')),
+                        ', '.join(authors) if authors else 'Unknown Author',
                         value.get('id', ""),
                         volume_info.get('imageLinks', {}).get('thumbnail', None)
                     ]
