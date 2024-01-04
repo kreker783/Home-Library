@@ -9,13 +9,21 @@
 {% block content %}
 
     <div class='info'>
-        <div class="cover">
-            {% if cover %}
-                <img src="{{ cover }}" alt="{{ title }}">
-            {% else %}
-                <img src="{% static 'images/no-cover.jpg' %}" alt="Nothing" height="195">
-            {% endif %}
+        <div id="left">
+            <div class="cover">
+                {% if cover %}
+                    <img src="{{ cover }}" alt="{{ title }}">
+                {% else %}
+                    <img src="{% static 'images/no-cover.jpg' %}" alt="Nothing" height="195">
+                {% endif %}
+            </div>
+
+            <form action="#" method="POST">
+                {% csrf_token %}
+                <button class="TBR" role="button">Want to read</button>
+            </form>
         </div>
+
         <div class="book-info">
             <h1>{{ title }}</h1>
             {% if subtitle %}
@@ -26,7 +34,7 @@
             <p><b>Author:</b> {{ authors }}</p>
             <p><b>Publisher:</b> {{ publisher }}</p>
             <p><b>Rating on Google Books:</b> {{ rating }}/5</p>
-            <p><b>Year of publication:</b> {{ year }}</p>
+            <p><b>Date of publication:</b> {{ year }}</p>
             <p><b>Amount of pages:</b> {{ pages }}</p>
             <p><b>Categories:</b> {{ categories }}</p>
         </div>
