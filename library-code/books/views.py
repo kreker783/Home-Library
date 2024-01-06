@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
-import pages.support_func as sf
+from django.contrib import messages
 
-import json
+import pages.support_func as sf
 
 
 class BookInfoView(View):
@@ -30,3 +30,14 @@ class BookInfoView(View):
         }
 
         return render(request, 'books/book_info.html', context=result)
+
+    def post(self, request, book_id, *args, **kwargs):
+        if not request.user.is_authenticated:
+            error_message = "You must be logged"
+            messages.error(request, error_message)
+        else:
+            request.user.tbr.append(book_id)
+            request.user.save()
+            messages.success(request, "Book has been added to your TBR list")
+
+        return redirect('book_info', book_id=book_id)
