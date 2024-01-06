@@ -10,9 +10,9 @@
     <main>
         <form action="{% url 'catalog' %}" method="get">
             {% csrf_token %}
-            <label for="id_search_query">Search for books:</label>
+            <label for="id_search_query" class="text_search">Search for books:</label>
             <input type="text" id="id_search_query" name="search_query" value="{{ form.search_query.value }}">
-            <button type="submit">Search</button>
+            <button type="submit" class="search">Search</button>
         </form>
 
 
