@@ -37,6 +37,11 @@
             <p><b>Date of publication:</b> {{ year }}</p>
             <p><b>Amount of pages:</b> {{ pages }}</p>
             <p><b>Categories:</b> {{ categories }}</p>
+            <p><b>Description:</b>
+                {% autoescape off %}
+                    {{ description }}
+                {% endautoescape %}
+            </p>
         </div>
     </div>
 
