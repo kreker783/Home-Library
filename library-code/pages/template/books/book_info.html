@@ -1,5 +1,6 @@
 {% extends "../pages/base.html" %}
 {% load static %}
+{% load replace %}
 
 {% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/book/book_info_styles.css' %}">
@@ -31,7 +32,7 @@
             {% endif %}
             <hr>
 
-            <p><b>Author:</b> {{ authors }}</p>
+            <p><b>Author:</b> <a href="/catalog/?search_query={{ authors | replace_author }}">{{ authors }}</a></p>
             <p><b>Publisher:</b> {{ publisher }}</p>
             <p><b>Rating on Google Books:</b> {{ rating }}/5</p>
             <p><b>Date of publication:</b> {{ year }}</p>
