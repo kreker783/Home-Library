@@ -18,14 +18,17 @@ class UserView(View):
 
     def get(self, request, *args, **kwargs):
 
+        # Check if the request user's ID matches the provided 'user_id'
         if request.user.pk != kwargs['user_id']:
             return render(request, 'errors/wrong_user_error.html')
 
         tbr = dict()
 
+        # Iterate over book IDs in the user's "to be read" list
         for book_id in request.user.tbr:
             api_response = sf.get_api(book_id=book_id)
             volume_info = api_response.get('volumeInfo', {})
+
             book_info = {
                 'id': book_id,
                 'name': volume_info.get('title')
@@ -39,7 +42,5 @@ class UserView(View):
             "date_joined": request.user.date_joined,
             "TBR": tbr
         }
-
-        print(request.user.tbr)
 
         return render(request, template_name="users/user_info.html", context=data)

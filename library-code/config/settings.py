@@ -74,7 +74,7 @@ TEMPLATES = [
             ],
 
             'libraries': {
-                'replace': 'pages.templatetags.replace'
+                'replace': 'config.templatetags.replace'
             }
         },
     },

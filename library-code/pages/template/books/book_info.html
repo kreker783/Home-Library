@@ -32,12 +32,24 @@
             {% endif %}
             <hr>
 
-            <p><b>Author:</b> <a href="/catalog/?search_query={{ authors | replace_author }}">{{ authors }}</a></p>
+            <p><b>Author:</b>
+                {% for author in authors %}
+                    <a href="/catalog/?search_query={{ author | replace_author }}">{{ author }} </a>
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
             <p><b>Publisher:</b> {{ publisher }}</p>
             <p><b>Rating on Google Books:</b> {{ rating }}/5</p>
             <p><b>Date of publication:</b> {{ year }}</p>
             <p><b>Amount of pages:</b> {{ pages }}</p>
-            <p><b>Categories:</b> {{ categories }}</p>
+            <p><b>Language:</b> {{ language.upper }}</p>
+            <p><b>Categories:</b>
+                <ul>
+                    {% for category in categories %}
+                        <li>{{ category | replace_cat }}</li>
+                    {% endfor %}
+                </ul>
+            </p>
             <p><b>Description:</b>
                 {% autoescape off %}
                     {{ description }}

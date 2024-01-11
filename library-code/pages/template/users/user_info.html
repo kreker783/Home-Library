@@ -22,6 +22,7 @@
             <p>TBR:
                 {% for key, value in TBR.items %}
                     <a href="{% url 'book_info' book_id=key %}">{{ value.name }}</a>
+                    {% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </p>
         </div>
