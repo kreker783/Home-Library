@@ -9,19 +9,19 @@ class HomePageView(TemplateView):
     template_name = "pages/home.html"
 
 
-class BookPageView(View):
-
-    def get(self, request, *args, **kwargs):
-        iban = '9781429914567'
-        api = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{iban}"
-        data = requests.get(api)
-        data = data.json()
-
-        data = {
-            'data': data['items'][0]['volumeInfo'],
-        }
-
-        return render(request, template_name="pages/catalog.html", context=data)
+# class BookPageView(View):
+#
+#     # def get(self, request, *args, **kwargs):
+#     #     iban = '9781429914567'
+#     #     api = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{iban}"
+#     #     data = requests.get(api)
+#     #     data = data.json()
+#     #
+#     #     data = {
+#     #         'data': data['items'][0]['volumeInfo'],
+#     #     }
+#     #
+#     #     return render(request, template_name="pages/catalog.html", context=data)
 
 
 class CatalogPageView(View):
