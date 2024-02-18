@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #D2D2D2;
+    background-color: #FFFFFF;
     margin: 0;
     padding: 0;
     color: #333;
@@ -51,7 +51,7 @@ nav a:hover {
 
 main {
     padding: 20px;
-    margin: 0 350px 350px;
+    margin: 0 20% 20%;
     text-align: center;
 }
 

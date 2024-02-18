@@ -8,30 +8,40 @@
 
 {% block content %}
     <main>
+        <h3 class="header-text">Browse All Books</h3>
+
         <form action="{% url 'catalog' %}" method="get">
             {% csrf_token %}
-            <label for="id_search_query" class="text_search">Search for books:</label>
-            <input type="text" id="id_search_query" name="search_query" value="{{ form.search_query.value }}">
-            <button type="submit" class="search">Search</button>
+            <input type="text" id="id_search_query" name="search_query" placeholder="Search all books...">
         </form>
 
 
         {% if result %}
             <div class="book-container">
                 {% for book in result %}
-                <a href="book/{{ book.3 }}" class="book">
+
+                <a href="book/{{ book.3 }}" class="cover">
                     {% if book.4 %}
                         <img src="{{ book.4 }}" alt="{{ book.0 }}">
                     {% else %}
-                        <img src="{% static 'images/no-cover.jpg' %}" alt="Nothing" height="500" width="300">
+                        <img src="{% static 'images/no-cover.jpg' %}" alt="Nothing" height="200" width="132.5">
                     {% endif %}
-                    <h3>{{ book.0 }} {{ book.1 }}</h3>
-                    <p>by {{ book.2 }}</p>
                 </a>
-                {% endfor %}
+                <div class="left-content">
+                    <form action="#" class="shelf">
+                        <button>to read</button>
+                    </form>
 
+                    <a href="book/{{ book.3 }}"><h3 class="title">{{ book.0 }} {{ book.1 }}</h3></a>
+                    <p class="author">{{ book.2 }}</p>
+                    <p class="rating">{{ book.5 }} avg rating</p>
+                    <p class="pages">{{ book.6 }} pages</p>
+                </div>
+                {% endfor %}
+                </div>
                 <a href="{{ modified_url }}&start_index={{ prev_start_index }}&max_results={{ max_results }}" class="previous page">&laquo; Previous</a>
                 <a href="{{ modified_url }}&start_index={{ next_start_index }}&max_results={{ max_results }}" class="next page">Next &raquo;</a>
+
             </div>
         {% endif %}
     </main>

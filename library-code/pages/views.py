@@ -9,21 +9,6 @@ class HomePageView(TemplateView):
     template_name = "pages/home.html"
 
 
-# class BookPageView(View):
-#
-#     # def get(self, request, *args, **kwargs):
-#     #     iban = '9781429914567'
-#     #     api = f"https://www.googleapis.com/books/v1/volumes?q=isbn:{iban}"
-#     #     data = requests.get(api)
-#     #     data = data.json()
-#     #
-#     #     data = {
-#     #         'data': data['items'][0]['volumeInfo'],
-#     #     }
-#     #
-#     #     return render(request, template_name="pages/catalog.html", context=data)
-
-
 class CatalogPageView(View):
 
     def get(self, request, *args, **kwargs):
@@ -55,7 +40,9 @@ class CatalogPageView(View):
                         volume_info.get('subtitle', ""),
                         ', '.join(authors) if authors else 'Unknown Author',
                         value.get('id', ""),
-                        volume_info.get('imageLinks', {}).get('thumbnail', None)
+                        volume_info.get('imageLinks', {}).get('thumbnail', None),
+                        volume_info.get('averageRating', 0.0),
+                        volume_info.get('pageCount'),
                     ]
                 )
 
