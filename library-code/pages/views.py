@@ -1,7 +1,7 @@
+from django.contrib import messages
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic.base import TemplateView, View
-import json
-import requests
 import pages.support_func as sf
 
 
@@ -60,6 +60,19 @@ class CatalogPageView(View):
 
         return render(request, template_name="pages/catalog.html", context=context)
 
+    def post(self, request, book_id=None, *args, **kwargs):
+        book_id = request.POST.get("book_id")
+        if book_id is None:
+            return HttpResponseBadRequest("Book ID required")
 
+        if not request.user.is_authenticated:
+            error_message = "You must be logged"
+            messages.error(request, error_message)
+        else:
+            request.user.tbr.append(book_id)
+            request.user.save()
+            messages.success(request, "Book has been added to your TBR list")
+
+        return HttpResponseRedirect(request.build_absolute_uri())
 
 

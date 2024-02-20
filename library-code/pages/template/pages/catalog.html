@@ -28,8 +28,10 @@
                     {% endif %}
                 </a>
                 <div class="left-content">
-                    <form action="#" class="shelf">
-                        <button>to read</button>
+                    <form method="post" class="shelf">
+                        {% csrf_token %}
+                        <input type="hidden" name="book_id" value="{{ book.3 }}">
+                        <button type="submit">to read</button>
                     </form>
 
                     <a href="book/{{ book.3 }}"><h3 class="title">{{ book.0 }} {{ book.1 }}</h3></a>
