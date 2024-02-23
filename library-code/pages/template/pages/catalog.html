@@ -28,7 +28,7 @@
                     {% endif %}
                 </a>
                 <div class="left-content">
-                    <form method="post" class="shelf">
+                    <form method="post" class="shelf {% if book.7 %} in_tbr {% endif %}">
                         {% csrf_token %}
                         <input type="hidden" name="book_id" value="{{ book.3 }}">
                         <button type="submit">to read</button>

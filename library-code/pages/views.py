@@ -34,6 +34,11 @@ class CatalogPageView(View):
 
                 authors = volume_info.get('authors')
 
+                in_tbr = False
+
+                if value.get('id', "") in request.user.tbr:
+                    in_tbr = True
+
                 result.append(
                     [
                         volume_info.get('title', "Unknown Title"),
@@ -43,6 +48,7 @@ class CatalogPageView(View):
                         volume_info.get('imageLinks', {}).get('thumbnail', None),
                         volume_info.get('averageRating', 0.0),
                         volume_info.get('pageCount'),
+                        in_tbr
                     ]
                 )
 

@@ -77,6 +77,12 @@ main {
     font-weight: bold;
 }
 
+.in_tbr button {
+    color: #04AA6D;
+    background-color: white;
+    border: #E5E5E5 2px solid;
+}
+
 .book img {
     padding-bottom: 0;
     padding-right: 0.7%;
