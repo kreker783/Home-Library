@@ -46,5 +46,19 @@
 
             </div>
         {% endif %}
+
+        {% if messages %}
+            <script>
+                var messages = [];
+
+                {% for message in messages %}
+                    messages.push("{{ message }}");
+                {% endfor %}
+
+                if (messages.length > 0) {
+                    alert(messages.join("\n"));
+                }
+            </script>
+        {% endif %}
     </main>
 {% endblock content %}

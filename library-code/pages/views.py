@@ -36,8 +36,9 @@ class CatalogPageView(View):
 
                 in_tbr = False
 
-                if value.get('id', "") in request.user.tbr:
-                    in_tbr = True
+                if request.user.is_authenticated:
+                    if value.get('id', "") in request.user.tbr:
+                        in_tbr = True
 
                 result.append(
                     [
@@ -75,9 +76,12 @@ class CatalogPageView(View):
             error_message = "You must be logged"
             messages.error(request, error_message)
         else:
-            request.user.tbr.append(book_id)
+            if book_id in request.user.tbr:
+                request.user.tbr.remove(book_id)
+            else:
+                request.user.tbr.append(book_id)
+
             request.user.save()
-            messages.success(request, "Book has been added to your TBR list")
 
         return HttpResponseRedirect(request.build_absolute_uri())
 
