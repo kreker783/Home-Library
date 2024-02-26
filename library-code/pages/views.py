@@ -1,12 +1,24 @@
 from django.contrib import messages
-from django.http import JsonResponse, HttpResponseRedirect, HttpResponseBadRequest
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render
-from django.views.generic.base import TemplateView, View
+from django.views.generic.base import View
+import requests
+from dotenv import load_dotenv
+import os
 import pages.support_func as sf
 
 
-class HomePageView(TemplateView):
-    template_name = "pages/home.html"
+class HomePageView(View):
+    def get(self, request, *args, **kwargs):
+        load_dotenv()
+        api_key = os.getenv('NYTimes_key')
+
+        nytimes_api = f"https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&api-key="
+        nytimes_full_api = nytimes_api + api_key
+
+        response = requests.get(nytimes_full_api)
+        print(response.json())
+        return render(request, template_name="pages/home.html")
 
 
 class CatalogPageView(View):
