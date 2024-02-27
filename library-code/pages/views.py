@@ -2,23 +2,28 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic.base import View
-import requests
-from dotenv import load_dotenv
-import os
 import pages.support_func as sf
 
 
 class HomePageView(View):
     def get(self, request, *args, **kwargs):
-        load_dotenv()
-        api_key = os.getenv('NYTimes_key')
+        response = sf.get_nytimes_api()
 
-        nytimes_api = f"https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&api-key="
-        nytimes_full_api = nytimes_api + api_key
+        result = []
 
-        response = requests.get(nytimes_full_api)
-        print(response.json())
-        return render(request, template_name="pages/home.html")
+        for book in response.get("results"):
+            book_details = book.get("book_details")[0]
+
+            result.append(
+                [
+                    book_details.get("title"),
+                    book_details.get("contributor"),
+                    book.get("rank"),
+                    sf.update_cover(book_details.get("primary_isbn10"))
+                ]
+            )
+
+        return render(request, template_name="pages/home.html", context={"books": result})
 
 
 class CatalogPageView(View):
@@ -39,7 +44,7 @@ class CatalogPageView(View):
         }
 
         if search_query:
-            api_response = sf.get_api(params)
+            api_response = sf.get_google_api(params)
 
             for value in api_response.get('items', []):
                 volume_info = value.get("volumeInfo", {})

@@ -4,5 +4,14 @@
     <main>
         <h2>Welcome to our Library!</h2>
         <p>Explore our vast collection of books and enjoy a quiet reading environment.</p>
+
+        {% for book in books %}
+
+            <div class="book">
+                <p>{{ book.0 }}</p>
+            </div>
+
+
+        {% endfor %}
     </main>
 {% endblock content %}
