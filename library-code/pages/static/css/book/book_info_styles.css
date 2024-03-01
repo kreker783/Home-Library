@@ -42,6 +42,7 @@ h1 {
     line-height: normal;
     margin-top: 20px;
     min-height: 20px;
+    margin-right: 40px;
     min-width: 0;
     outline: none;
     padding: 5px 3px;
@@ -51,7 +52,7 @@ h1 {
     user-select: none;
     -webkit-user-select: none;
     touch-action: manipulation;
-    width: 128px;
+    width: 83%;
     will-change: transform;
 }
 
@@ -61,3 +62,34 @@ h1 {
     box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
     transform: translateY(-2px);
 }
+
+p {
+    margin: 0;
+}
+
+#author > a {
+    text-decoration: none;
+    color: black;
+}
+
+#publisher {
+    margin-top: 20px;
+}
+
+#categories {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#categories > span {
+    border: #E5E5E5 2px solid;
+    color: darkgreen;
+    padding: 2px;
+}
+
+#more {
+    display: none;
+    float: left;
+}
+
+

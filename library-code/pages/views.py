@@ -2,6 +2,9 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import render
 from django.views.generic.base import View
+import requests
+from dotenv import load_dotenv
+import os
 import pages.support_func as sf
 
 
@@ -11,17 +14,23 @@ class HomePageView(View):
 
         result = []
 
-        for book in response.get("results"):
+        for counter, book in enumerate(response.get("results")):
             book_details = book.get("book_details")[0]
+
+            isbn = book_details.get("primary_isbn10")
+            img, id = sf.update_cover(isbn)
 
             result.append(
                 [
                     book_details.get("title"),
                     book_details.get("contributor"),
-                    book.get("rank"),
-                    sf.update_cover(book_details.get("primary_isbn10"))
+                    img,
+                    id
                 ]
             )
+
+            if counter == 4:
+                break
 
         return render(request, template_name="pages/home.html", context={"books": result})
 

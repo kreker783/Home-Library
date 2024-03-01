@@ -62,3 +62,14 @@ button {
     border: none;
     cursor: pointer;
 }
+
+.week_books {
+    overflow: auto;
+    white-space: nowrap;
+    justify-content: space-between
+}
+
+.book {
+    padding-right: 15px;
+    display: inline-block;
+}

@@ -1,17 +1,27 @@
 {% extends "./base.html" %}
+{% load static %}
 
 {% block content %}
     <main>
         <h2>Welcome to our Library!</h2>
         <p>Explore our vast collection of books and enjoy a quiet reading environment.</p>
 
-        {% for book in books %}
+        <h3>Books of this week by The New York Times:</h3>
+        <div class="week_books">
+            {% for book in books %}
 
             <div class="book">
-                <p>{{ book.0 }}</p>
+                <a href="/catalog/book/{{ book.3 }}">
+                    {% if book.2 %}
+                    <img src="{{ book.2 }}" alt="{{ book.0 }}" width="166" height="256">
+                    {% else %}
+                    <img src="{% static 'images/no-cover.jpg' %}" alt="Nothing" width="166" height="256">
+                    {% endif %}
+                </a>
             </div>
 
+            {% endfor %}
+        </div>
 
-        {% endfor %}
     </main>
 {% endblock content %}

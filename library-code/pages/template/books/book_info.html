@@ -30,33 +30,54 @@
             {% if subtitle %}
                 <h1>{{ subtitle }}</h1>
             {% endif %}
-            <hr>
 
-            <p><b>Author:</b>
+            <p id="author">
                 {% for author in authors %}
                     <a href="/catalog/?search_query={{ author | replace_author }}">{{ author }} </a>
                     {% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </p>
-            <p><b>Publisher:</b> {{ publisher }}</p>
-            <p><b>Rating on Google Books:</b> {{ rating }}/5</p>
+
+            <hr>
+
+            <p>{{ pages }} <small>pages</small>  &#x2022;  {{ rating }} &#9733;</p>
+
+            <div id="categories">
+                {% for category in categories %}
+                    <span>{{ category | replace_cat }}</span>
+                {% endfor %}
+            </div>
+
+            <p id="publisher"><b>Publisher:</b> {{ publisher }}</p>
             <p><b>Date of publication:</b> {{ year }}</p>
-            <p><b>Amount of pages:</b> {{ pages }}</p>
             <p><b>Language:</b> {{ language.upper }}</p>
-            <p><b>Categories:</b>
-                <ul>
-                    {% for category in categories %}
-                        <li>{{ category | replace_cat }}</li>
-                    {% endfor %}
-                </ul>
-            </p>
-            <p><b>Description:</b>
+
+            <div id="description"><b>Description:</b>
                 {% autoescape off %}
-                    {{ description }}
+                    {{ short_description }}<span id="dots">...</span><p id="more">{{ long_description }}</p>
                 {% endautoescape %}
-            </p>
+            </div>
+            <button onclick="myFunction()" id="read">Read more</button>
         </div>
     </div>
+
+    <script>
+    function myFunction() {
+      var dots = document.getElementById("dots");
+      var moreText = document.getElementById("more");
+      var btnText = document.getElementById("read");
+
+      if (dots.style.display === "none") {
+        dots.style.display = "inline";
+        btnText.innerHTML = "Read more";
+        moreText.style.display = "none";
+      } else {
+        dots.style.display = "none";
+        btnText.innerHTML = "Read less";
+        moreText.style.display = "inline";
+      }
+    }
+    </script>
 
     {% if messages %}
         {% for message in messages %}

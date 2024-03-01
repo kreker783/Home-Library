@@ -9,8 +9,13 @@ class BookInfoView(View):
 
     def get(self, request, book_id, *args, **kwargs):
 
-        api_response = sf.get_api(book_id=book_id)
+        api_response = sf.get_google_api(book_id=book_id)
         volume_info = api_response.get('volumeInfo', {})
+
+        description = volume_info.get('description', 'Unknown')
+        short_description = description[:50]
+        long_description = description[50:]
+
 
         result = {
             'title': volume_info.get('title'),
@@ -18,7 +23,8 @@ class BookInfoView(View):
             'authors': volume_info.get('authors', "Unknown author"),
             'publisher': volume_info.get('publisher', 'Unknown publisher'),
             'year': volume_info.get('publishedDate'),
-            'description': volume_info.get('description', 'Unknown'),
+            'short_description': short_description,
+            'long_description': long_description,
             'pages': volume_info.get('pageCount'),
             'categories': volume_info.get('categories', ""),
             'rating': volume_info.get('averageRating', 0.0),

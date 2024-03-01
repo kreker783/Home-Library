@@ -46,4 +46,5 @@ def update_cover(isbn):
     data = requests.get(api)
     data = data.json()
     img = data.get('items')[0].get('volumeInfo').get('imageLinks', {}).get('thumbnail', None)
-    return img
+    id = data.get('items')[0].get('id')
+    return img, id
