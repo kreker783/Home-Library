@@ -26,7 +26,7 @@ class UserView(View):
 
         # Iterate over book IDs in the user's "to be read" list
         for book_id in request.user.tbr:
-            api_response = sf.get_api(book_id=book_id)
+            api_response = sf.get_google_api(book_id=book_id)
             volume_info = api_response.get('volumeInfo', {})
 
             book_info = {

@@ -13,9 +13,8 @@ class BookInfoView(View):
         volume_info = api_response.get('volumeInfo', {})
 
         description = volume_info.get('description', 'Unknown')
-        short_description = description[:50]
-        long_description = description[50:]
-
+        short_description = description[:150]
+        long_description = description[150:]
 
         result = {
             'title': volume_info.get('title'),
@@ -30,6 +29,7 @@ class BookInfoView(View):
             'rating': volume_info.get('averageRating', 0.0),
             'cover': volume_info.get('imageLinks', {}).get('thumbnail', None),
             'language': volume_info.get('language', 'Unknown'),
+            'isbn': volume_info.get('industryIdentifiers')[0].get('identifier')
         }
 
         return render(request, 'books/book_info.html', context=result)

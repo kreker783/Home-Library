@@ -48,21 +48,28 @@
                 {% endfor %}
             </div>
 
-            <p id="publisher"><b>Publisher:</b> {{ publisher }}</p>
-            <p><b>Date of publication:</b> {{ year }}</p>
-            <p><b>Language:</b> {{ language.upper }}</p>
+            <div id="edition-details">
+                <button onclick="readEditionInfo()" id="edition-info-butt">Edition details &dArr;</button>
+                <div id="edition">
+                    <p><b>Publisher</b><span>{{ publisher }}</span></p>
+                    <p><b>Publication</b><span>{{ year }}</span></p>
+                    <p><b>Language</b><span>{{ language.upper }}</span></p>
+                    <p><b>ISBN</b><span>{{ isbn }}</span></p>
+                </div>
+            </div>
 
-            <div id="description"><b>Description:</b>
+            <div id="description">
+                <p id="desc">Description</p>
                 {% autoescape off %}
                     {{ short_description }}<span id="dots">...</span><p id="more">{{ long_description }}</p>
                 {% endautoescape %}
+                <button onclick="readMore()" id="read">Read more</button>
             </div>
-            <button onclick="myFunction()" id="read">Read more</button>
         </div>
     </div>
 
     <script>
-    function myFunction() {
+    function readMore() {
       var dots = document.getElementById("dots");
       var moreText = document.getElementById("more");
       var btnText = document.getElementById("read");
@@ -77,6 +84,20 @@
         moreText.style.display = "inline";
       }
     }
+
+    function readEditionInfo() {
+        var butt = document.getElementById("edition-info-butt");
+        var editionInfo = document.getElementById("edition");
+
+        if (butt.style.display === "none") {
+            butt.style.display = "inline";
+            editionInfo.style.display = "none";
+        } else {
+            butt.style.display = "none";
+            editionInfo.style.display = "inline";
+        }
+    }
+
     </script>
 
     {% if messages %}
