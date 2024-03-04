@@ -31,7 +31,8 @@ class UserView(View):
 
             book_info = {
                 'id': book_id,
-                'name': volume_info.get('title')
+                'name': volume_info.get('title'),
+                'cover': volume_info.get('imageLinks', {}).get('thumbnail', None)
             }
             tbr[book_id] = book_info
 

@@ -66,7 +66,7 @@ button {
 .week_books {
     overflow: auto;
     white-space: nowrap;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .book {

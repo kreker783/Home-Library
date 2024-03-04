@@ -9,29 +9,47 @@
 {% block content %}
 
     <div class='info'>
-        <div class="photo">
 
+        <div id="left">
+            <div class="photo">
+                <img src="{% static 'images/prof-icon.png' %}" alt="profile icon" height="100" width="100">
+            </div>
+
+            <div class="menu-container">
+                <form method="post" action="{% url 'log_out' %}">
+                    {% csrf_token %}
+                    <button class="menu-item">Log Out</button>
+                </form>
+            </div>
         </div>
+
         <div class="personal-info">
-            <h1>{{ name }}</h1>
+            <h1>{% firstof name email %}</h1>
             <hr>
 
-            <p>Email: {{ email }}</p>
-            <p>Your ID: {{ user_id }}</p>
-            <p>Date of joining the service: {{ date_joined }}</p>
-            <p>TBR:
-                {% for key, value in TBR.items %}
-                    <a href="{% url 'book_info' book_id=key %}">{{ value.name }}</a>{% if not forloop.last %}, {% endif %}
-                {% endfor %}
-            </p>
-        </div>
+            <div id="user-details">
+                <p><b>Your personal info</b></p>
 
-        <div class="menu-container">
-            <a href="#" class="menu-item">Change Personal Info</a>
-            <form method="post" action="{% url 'log_out' %}">
-                {% csrf_token %}
-                <button class="menu-item">Log Out</button>
-            </form>
+                <p>Email <span>{{ email }}</span></p>
+                <p>Your ID <span>{{ user_id }}</span></p>
+                <p>Date of joining the service <span>{{ date_joined }}</span></p>
+            </div>
+
+
+            <div id="TBR">
+                <p><b>TBR</b></p>
+
+                {% for key, value in TBR.items %}
+                    <a href="/catalog/book/{{ value.id }}">
+                        {% if value.cover %}
+                        <img src="{{ value.cover }}" alt="{{ value.name }}" height="156">
+                        {% else %}
+                        <img src="{% static 'images/no-cover.jpg' %}" alt="Nothing" width="166" height="256">
+                        {% endif %}
+                    </a>
+                {% endfor %}
+
+            </div>
         </div>
     </div>
 
