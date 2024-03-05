@@ -1,0 +1,20 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    env_file:
+      - '.env'
+    ports:
+      - "8000:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  web:
+    restart: always
+    build: .
+    volumes:
+      - .:/usof
+    depends_on:
+      db:
+        condition: service_started
+    ports:
+      - "5050:8000"
