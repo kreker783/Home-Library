@@ -8,13 +8,18 @@ services:
       - "8000:5432"
     volumes:
       - ./data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready']
+      interval: 10s
+      timeout: 5s
+      retries: 5
   web:
     restart: always
     build: .
     volumes:
-      - .:/usof
+      - .:/home_library
     depends_on:
       db:
-        condition: service_started
+        condition: service_healthy
     ports:
       - "5050:8000"
