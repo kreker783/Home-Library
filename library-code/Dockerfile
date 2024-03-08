@@ -5,4 +5,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5000
 COPY . .
 ENV PYTHONUNBUFFERED 1
-CMD ["./wait-for-it.sh", "--timeout=30", "db:5432", "--", "python", "start_server.py"]
+CMD ["python", "start_server.py"]
