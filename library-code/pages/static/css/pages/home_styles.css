@@ -67,6 +67,10 @@ button {
     overflow: auto;
     white-space: nowrap;
     justify-content: space-between;
+    border: #E5E5E5 2px solid;
+    padding: 10px;
+    margin-top: 5%;
+    text-align: left;
 }
 
 .book {
