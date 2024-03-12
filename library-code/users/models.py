@@ -15,7 +15,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(default=timezone.now)
     tbr = ArrayField(
         models.CharField(max_length=512),
-        null=True, blank=True
+        default=list, null=True
     )
 
     USERNAME_FIELD = "email"
