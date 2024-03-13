@@ -42,3 +42,20 @@ To run this project, you will need to add the following environment variables to
 `SECRET_KEY` - Secret key used by Django for cryptographic signing. You can easy generate one: https://djecrety.ir/
 
 Please ensure that you set these environment variables appropriately, by using a configuration file like `.env`.
+
+
+
+## Deployment
+
+To deploy this project:
+
+1. Make sure port 80 is available
+
+2. Run
+
+```bash
+    git clone https://github.com/kreker783/Home-Library.git && cd Home-Library/library-code/
+    docker compose up
+```
+
+3. Open your web browser and navigate to http://localhost.
