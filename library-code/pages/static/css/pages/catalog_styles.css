@@ -1,5 +1,9 @@
 main {
     margin: 0 27% 27%;
+    border-right: 2px solid #E5E5E5;
+    border-left: 2px solid #E5E5E5;
+    border-bottom: 2px solid #E5E5E5;
+    height: 100%;
 }
 
 .header-text {
@@ -37,6 +41,7 @@ main {
     padding-left: 8px;
     text-align: left;
     border: #E5E5E5 0.2px solid;
+    border-radius: 5px;
 }
 
 .left-content h3,
@@ -75,12 +80,14 @@ main {
     display: inline-block;
     font-size: 10px;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 .in_tbr button {
     color: #04AA6D;
     background-color: white;
     border: #E5E5E5 2px solid;
+    border-radius: 5px;
 }
 
 .book img {
