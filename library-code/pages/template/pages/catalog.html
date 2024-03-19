@@ -11,7 +11,6 @@
         <h3 class="header-text">Browse All Books</h3>
 
         <form action="{% url 'catalog' %}" method="get">
-            {% csrf_token %}
             <input type="text" id="id_search_query" name="search_query" placeholder="Search all books...">
         </form>
 
