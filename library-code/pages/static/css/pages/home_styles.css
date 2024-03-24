@@ -74,6 +74,9 @@ button {
 }
 
 .book {
-    padding-right: 3%;
+    margin-right: 3%;
     display: inline-block;
+    width: calc(20% - 3%);
+    max-width: 200px; 
+    box-sizing: border-box;
 }

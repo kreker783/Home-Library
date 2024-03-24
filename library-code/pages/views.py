@@ -18,7 +18,11 @@ class HomePageView(View):
             book_details = book.get("book_details")[0]
 
             isbn = book_details.get("primary_isbn10")
-            img, id = sf.update_cover(isbn)
+
+            try:
+                img, id = sf.update_cover(isbn)
+            except Exception:
+                continue
 
             result.append(
                 [
@@ -29,7 +33,7 @@ class HomePageView(View):
                 ]
             )
 
-            if counter == 4:
+            if len(result) == 5:
                 break
 
         return render(request, template_name="pages/home.html", context={"books": result})
