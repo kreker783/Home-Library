@@ -3,6 +3,9 @@
 
 The Home Library Project is a simple application to help you manage your personal book collection at home.
 
+# Demo
+
+http://kreker.xyz
 
 ## Features
 
