@@ -5,7 +5,7 @@ The Home Library Project is a simple application to help you manage your persona
 
 # Demo
 
-http://kreker.xyz
+[http://kreker.xyz](http://library.kreker.xyz/)
 
 ## Features
 
